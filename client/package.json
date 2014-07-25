@@ -1,0 +1,21 @@
+{
+	"main": "node-webkit-index.html",
+	"name": "PeerConnection Demo",
+	"description": "A playground for PeerConnection",
+	"version": "0.1",
+    "main": "http://192.168.1.140:8092/node-webkit-index.html",
+    "node-remote": "http://192.168.1.140:8092",	
+	"keywords": [ "node-webkit", "Desktop Notifications", "PeerConnection" ],
+	"window": {
+		"toolbar": true,
+		"width": 800,
+		"height": 800,
+		"position": "mouse",
+		"min_width": 400,
+		"min_height": 200
+	},
+	"webkit": {
+		"plugin": true, //turns off browser plugins
+		"page-cache": false
+	}
+}

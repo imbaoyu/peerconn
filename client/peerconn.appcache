@@ -1,0 +1,19 @@
+CACHE MANIFEST
+# 2013-03-28:v4
+
+# Explicitly cached 'master entries'.
+CACHE:
+index.html
+main.html
+img/loading.gif
+dist/code.js
+dist/libs.js
+dist/styles.css
+img/message.wav
+img/telephone.wav
+
+NETWORK:
+*
+
+FALLBACK:
+/ offline.html

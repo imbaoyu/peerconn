@@ -1,0 +1,19 @@
+{
+  "JSHINT_OPTS": { 
+    "jquery": true, "forin": true, "noarg":true, 
+    "noempty":true, "eqeqeq":true, "bitwise":true, "strict":true, 
+    "undef":true, "unused":true, "curly":true, "indent": 4
+   },
+  "JAVASCRIPT": {
+    "code": [ 
+      "./client/js/common.js",
+      "./client/js/sdp.js",
+      "./client/js/connHandler.js", 
+      "./client/js/app.js", 
+      "./client/js/controllers.js",
+      "./client/js/services.js", 
+      "./client/js/directives.js"
+    ]
+  },
+  "DEBUG": true
+}

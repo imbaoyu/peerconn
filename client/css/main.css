@@ -1,0 +1,5 @@
+test{width:100px}/*!
+ * PeerConnection LESS Styles
+ *
+ * These LESS styles will be converted to CSS files using less-middleware
+ */body{margin:0}pre{margin-left:0;font-size:11px;line-height:12px}h4{-vendor-margin-after:15px}@-vendor-keyframes blink{50%{background-color:rgba(82,168,236,0.6)}}.content{margin:10px}.pcexpanded{height:100px}.pcblink td{-vendor-animation:blink .5s step-end infinite alternate}.pcblink:hover td{-vendor-animation:blink .5s step-end infinite alternate}#main{display:-vendor-box;-vendor-box-orient:horizontal}#main>div:first-child{width:400px}.pc-history{-vendor-margin-before:10px;-vendor-margin-after:0;cursor:auto!important}.pc-input{-vendor-margin-before:10px;-vendor-margin-after:0}video{box-shadow:5px 5px 5px #888}#remote{width:300px;margin:10px}#local{width:200px;margin:10px}.pcrow{height:20px}.pcrow textarea{width:95%;font-size:13px;resize:none}.pcrow button{margin-left:10px}.pcrow td{padding:8px}.title-bar{-webkit-app-region:drag;font-weight:bold;font-size:12px;height:10px;display:table-row;background:#2a3136;color:#b3b2b4}.title-bar .title-bar-inner{padding:5px 15px;display:table-cell}

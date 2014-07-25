@@ -1,0 +1,28 @@
+{
+  "name": "PeerConn",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "minimum_chrome_version": "23",
+  "icons": {
+    "16": "img/ansible.png",
+    "128": "img/ansible.png"
+  },
+  "app": {
+    "background": {
+      "scripts": [
+        "js/background.js",
+        "js/common.js",
+        "js/bgConductor.js",
+        "js/bgConnectionHandler.js",
+        "js/bgNotificationHandler.js"
+      ]
+    }
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications",
+    "audioCapture",
+    "videoCapture"
+  ]
+}

@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- temp add ng-csp for chrome app. degrades performance by 30% -->
+<!-- add to html for offline access: manifest="peerconn.appcache"-->
+<html lang="en" ng-app="myApp" ng-csp>
+  <head>
+    <title>WebRTC PeerConnection Prototype</title>
+    <meta name="description" content="">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="dist/styles.css">
+  </head>
+  <body data-name="webrtc" data-tc="lib" data-path="lib/NaCl">
+    <style>
+      .content { opacity: 0; }
+      .loading { display: block; text-align: center;}
+    </style>
+    <div class="loading">
+      <img src="img/loading.gif">
+    </div>  
+
+    <div class="content" ng-include="'main.html'" ></div>
+
+    <script type="text/javascript" src="dist/libs.js"></script>
+    <script type="text/javascript" src="dist/code.js"></script>
+  </body>
+</html>

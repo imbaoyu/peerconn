@@ -1,0 +1,93 @@
+<div ng-controller="AppCtrl">
+  <h4>WebRTC PeerConnection Prototype ({{connectionState}}), AppCache ({{appCacheStatus()}})</h4>
+  <div id="main" ng-cloak>
+    <div>
+      <form class="form-inline">
+        <div style="padding-bottom:10px">
+          wss://<input type="text" class="input-large" ng-model="wshost" ng-disabled="isSignedIn"/>
+        </div>
+        <div>
+          <input type="text" class="input-large" ng-model="username" ng-disabled="isSignedIn" placeholder="Enter your name here"/>
+          <button class="btn btn-primary" data-ng-click="signin()" ng-show="!isSignedIn" ng-disabled="username==null || username.length==0">Login</button>
+          <button class="btn btn-primary" ng-click="signout()" ng-show="isSignedIn">Logout</button>
+        </div>
+
+      </form>
+      <div ng-show="isSignedIn"> 
+        <p>Hello {{username}}, you are successfully logged in.</p>
+        <p ng-show="peers.length==0">Waiting for peers to join...</p>
+        <div ng-show="callStatus">
+          <pre>Peer: {{peer}}<br/>Call Status: {{callStatus}}<br/>SDP Status: {{sdpStatus}}<br/><a ng-click="logPeerConnection()">RTCPeerConnection</a>:<br/>  <a ng-click="logLocalStreams()">localStreams</a>: {{localStreamData()}}<br/>  <a ng-click="logRemoteStreams()">remoteStreams</a>: {{remoteStreamData()}}<br/>  readyState: {{readyState}}<br/>  iceState: {{iceState}}</pre>
+          <button class="btn btn-success btn-small" ng-show="isAlerting()" ng-click="answer()">Answer</button>
+          <button class="btn btn-danger btn-small" ng-show="isAlerting()" ng-click="hangup()">Reject</button>
+          <button class="btn btn-danger btn-small" ng-show="!isAlerting()" ng-click="hangup()">Hangup</button>
+          <span ng-show="hasActiveCall()">
+            <button class="btn btn-small" ng-show="!isMuted" ng-click="mute()">Mute</button>
+            <button class="btn btn-warning btn-small" ng-show="isMuted" ng-click="unmute()">Unmute</button>
+            <button class="btn btn btn-small" ng-show="!hasVideo()" ng-click="addVideo()">Add Video</button>
+            <button class="btn btn-warning btn-small" ng-show="hasVideo()" ng-click="removeVideo()">Remove Video</button>
+          </span>
+        </div>
+        <div>
+          <br>
+          <p ng-show="peers.length>0">There are {{peers.length}} users currently logged in.</p>
+          <table class="table table-hover table-condensed" style="width:350px">
+            <tbody>
+              <tr ng-class="{pcrow: true, pcblink: isBlinking, pcexpand: isExpanded}" ng-repeat="peer in peers" ng-controller='PeerCtrl' ng-click="im($event)">
+                <td>
+                  <img ng-src="{{getDeviceImage(peer)}}" style="width:24px">
+                  <span>{{peer.user}}</span>
+                  <button class="btn btn-small btn-success pull-right" ng-show="!callStatus" ng-click="call(peer, $event)">Call</button>
+                  <br/>
+                  <pc-msg-container></pc-msg-container> 
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>            
+      </div>
+    </div>
+    <div id="local" ng-show="hasLocalVideo">
+      <video width="100%" height="100%" id="localVideo" autoplay="autoplay"></video>
+    </div>
+    <div id="remote" ng-show="hasRemoteVideo">
+      <video width="100%" height="100%" id="remoteVideo" autoplay="autoplay"></video>
+    </div>
+    <div ng-show="hasActiveCall()">
+      <b>Audio Stats:</b>
+      <pre>{{audioStats}}</pre>
+      <b>Video Stats:</b>
+      <pre>{{videoStats}}</pre>
+    </div>
+  </div>
+  <br/><hr/>
+  <div>
+    <h4>Options:</h4>
+    <div>Show Log: <input type="checkbox" ng-model="enableLog"> </div>
+    <div>Auto Answer: <input type="checkbox" ng-model="autoAnswer"> </div>
+    <div ng-show="!autoAnswer"> Send Provisional Answer: <input type="checkbox" ng-disabled="isFirefox" ng-model="sendPrAnswer"> </div>
+    <div ng-show="!isFirefox">Use Trickle ICE for SDP Offer: <input type="checkbox" ng-model="trickleIceForOffer"> </div>
+    <div ng-show="!isFirefox">Use Trickle ICE for SDP Answer: <input type="checkbox" ng-model="trickleIceForAnswer"> </div>
+    <!-- The option to reuse the existing RTCPeerConnection is not working properly. Disable it for now.
+    <div>Reuse RTCPeerConnection when Adding and Removing Video: <input type="checkbox" ng-model="reusePC"> </div>
+    -->
+    <div ng-show="!isFirefox">Use DTLS instead of SDES: <input type="checkbox" ng-model="useDTLS"> </div>
+    <div ng-show="!isFirefox">Use RTP Proxy for Outgoing Calls: <input type="checkbox" ng-model="useRtpProxy"> </div>
+    <div ng-show="useRtpProxy && !isFirefox"> Force SRTP&lt;-&gt;RTP&lt;-&gt;SRTP interworking: <input type="checkbox" ng-model="srtpInterwork"> </div>
+    <div>Chime on Incoming Message: <input type="checkbox" ng-model="enableChime"> </div>
+  </div>
+  <br/><hr/>
+  <div ng-show="enableLog">
+    <b>Log: (newest on top) </b><a ng-click="clearLog()">Clear Log</a>
+    <div ng-repeat="entry in logs">
+      <pre ng-bind-template="{{entry}}"></pre>
+    </div>
+  </div>
+</div>
+<audio id="audioRing" preload="auto" loop>
+  <source src="img/telephone.wav">
+</audio>
+<audio id="messageChime" preload="auto">
+  <source src="img/message.wav">
+</audio>
+<audio id="voice"/></audio>

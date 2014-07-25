@@ -1,0 +1,28 @@
+CACHE MANIFEST
+# 2013-03-28:v8
+
+# Explicitly cached 'master entries'.
+CACHE:
+node-webkit-index.html
+main.html
+img/loading.gif
+img/message.wav
+img/telephone.wav
+css/bootstrap.min.css
+css/main.css
+lib/jquery-1.7.2.min.js
+lib/angular.min.js
+lib/angular-ui.js
+js/sdp.js
+js/app.js
+js/controllers.js
+js/services.js
+js/directives.js
+js/nw-desktop-notifications.js
+
+
+NETWORK:
+*
+
+FALLBACK:
+/*.html offline.html

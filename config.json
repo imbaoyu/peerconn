@@ -1,0 +1,15 @@
+{
+  "JSHINT_OPTS": { },
+  "JAVASCRIPT": {
+    "code": [ 
+      "./client/js/common.js"
+      , "./client/js/sdp.js"
+      , "./client/js/connHandler.js" 
+      , "./client/js/app.js" 
+      , "./client/js/controllers.js" 
+      , "./client/js/services.js" 
+      , "./client/js/directives.js"
+    ]
+  },
+  "DEBUG": true
+}

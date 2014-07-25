@@ -1,0 +1,21 @@
+{
+  "JSHINT_OPTS": { 
+    "node": true, "forin": true, "noarg":true, 
+    "noempty":true, "eqeqeq":true, "bitwise":true, "strict":true, 
+    "undef":true, "unused":true, "curly":true, "indent": 4
+   },
+  "JAVASCRIPT": {
+    "code": [ 
+      "./server/common.js",
+      "./server/logger.js",
+      "./server/mediaHandler.js",
+      "./server/peerConnection.js",
+      "./server/rtpAgent.js",
+      "./server/sdp.js",
+      "./server/sdpMapping.js",
+      "./server/socketHandler.js",
+      "./app.js" 
+    ]
+  },
+  "DEBUG": true
+}
